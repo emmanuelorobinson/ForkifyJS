@@ -462,8 +462,33 @@ const timeout = function(s) {
             reject(new Error(`Request took too long! Timeout after ${s} second`));
         }, s * 1000);
     });
-}; // https://forkify-api.herokuapp.com/v2
- ///////////////////////////////////////
- //Changes here - Emmanuel
+};
+// https://forkify-api.herokuapp.com/v2
+///////////////////////////////////////
+//Changes here - Emmanuel
+//Get the recipe from the API
+const getRecipe = async function(recipeId) {
+    try {
+        const res = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886`);
+        const data = await res.json();
+        if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+        console.log(res, data);
+        let { recipe  } = data.data;
+        recipe = {
+            id: recipe.id,
+            title: recipe.title,
+            publisher: recipe.publisher,
+            sourcerUrl: recipe.source_url,
+            image: recipe.image_url,
+            servings: recipe.servings,
+            cookingTime: recipe.cooking_time,
+            ingredients: recipe.ingredients
+        };
+        console.log(recipe);
+    } catch (error) {
+        throw new Error(error);
+    }
+};
+getRecipe();
 
 //# sourceMappingURL=index.0e47d5c3.js.map
