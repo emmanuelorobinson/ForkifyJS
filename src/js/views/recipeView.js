@@ -3,6 +3,7 @@ import { Fraction } from 'fractional';
 
 class RecipeView {
     #parentElement = document.querySelector('.recipe');
+    #data;
 
     render(data) {
         this.#data = data;
@@ -26,6 +27,10 @@ class RecipeView {
         this.#parentElement.innerHTML = '';
         this.#parentElement.insertAdjacentHTML('afterbegin', spinner);
     };
+
+    addHandlerRender(handler) {
+        ['hashchange', 'load'].forEach(event => window.addEventListener(event, handler));
+    }
 
     #generateMarkup() {
         return `<figure class="recipe__fig">

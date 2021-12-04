@@ -19,7 +19,7 @@ const timeout = function (s) {
 ///////////////////////////////////////
 
 //Get the recipe from the API
-const getRecipe = async function (recipeId) {
+const getRecipe = async function () {
   try {
 
     const id = window.location.hash.slice(1);
@@ -41,6 +41,8 @@ const getRecipe = async function (recipeId) {
   }
 };
 
-getRecipe();
+const init = function () {
+  recipeView.addHandlerRender(getRecipe)
+};
 
-['hashchange', 'load'].forEach(event => window.addEventListener(event, getRecipe));
+init();
