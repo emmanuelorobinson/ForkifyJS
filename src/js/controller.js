@@ -61,7 +61,7 @@ const controlPagination = function (goto) {
   paginationView.render(model.state.search);
 }
 
-const controlServings = function(newServings) {
+const controlServings = function (newServings) {
   // update the recipe servings (in state)
   model.updateServings(newServings);
 
@@ -69,9 +69,17 @@ const controlServings = function(newServings) {
   recipeView.update(model.state.recipe);
 }
 
+const controlAddBookmark = function () {
+  if (!model.state.recipe.bookmarked) { model.addBookmark(model.state.recipe); }
+  else { model.removeBookmark(model.state.recipe.id); }
+  console.log(model.state.bookmarks); 
+  recipeView.update(model.state.recipe);
+}
+
 const init = function () {
   recipeView.addHandlerRender(getRecipe);
   searchView.addHandlerSearch(controlSearchResults);
+  recipeView.addHandlerBookmark(controlAddBookmark);
   paginationView.addHandlerClick(controlPagination);
   recipeView.addHandlerUpdateServings(controlServings);
 };
