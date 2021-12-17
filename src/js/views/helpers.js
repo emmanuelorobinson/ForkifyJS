@@ -30,7 +30,7 @@ export const AJAX = async function (url, uploadData = undefined) {
     }
 }
 
-export const getJSON = async function (url) {
+/* export const getJSON = async function (url) {
     try {
         const res = await Promise.race([fetch(url), timeout(TIMEOUT_SEC)]);
         const data = await res.json();
@@ -62,4 +62,4 @@ export const sendJSON = async function (url, uploadData) {
     } catch (error) {
         throw error;
     }
-}
+} */
